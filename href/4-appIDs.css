@@ -1,0 +1,83 @@
+/* IDs */
+#idScreenFooter {
+    flex-direction: column;
+    ;
+}
+
+#idSystemNameInputText1 {
+    background-color: transparent;
+    border-color: transparent;
+    border-width: 0em;
+    display: inline-block;
+    font-family: var(--font1);
+    max-width: 10em;
+    min-width: 3em;
+    padding: 0.75em 0em 0.8125em 0em;
+    text-overflow: ellipsis;
+    width: auto;
+}
+
+#systemNameLabel {
+    height: 2.75em;
+}
+
+#idAppNameText {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#idOutput {
+    font-size: 0.75em;
+    white-space: nowrap;
+}
+
+#idScreen.mobile {
+    max-width: 20em;
+}
+
+#idScreen.tablet {
+    width: 48em;
+}
+
+#idScreen.desktop {
+    max-width: 90em;
+    width: 100%;
+}
+
+#idScreen {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#idScreenMain {
+    border: 1px solid white;
+    border-radius: var(--borderRadius);
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow: auto;
+}
+
+#idScreenFooter {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+#idScreenFooter1 {
+    align-self: stretch;
+}
+
+
+#textareaComment {
+    min-height: 2.75em;
+}
+
+#zoomLabel {
+    display: inline-block;
+    margin-right: 1em;
+}
+
+#zoomSelect {
+    padding: 0.75em 0em 0.75em 0.75em;
+}
