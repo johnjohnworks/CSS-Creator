@@ -37,6 +37,7 @@
 }
 
 #idScreen.tablet {
+    max-width: 48em;
     width: 48em;
 }
 

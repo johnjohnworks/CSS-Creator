@@ -28,11 +28,6 @@ function undoAction() {
   document.getElementById("idHTML").innerHTML = tempHTML;
 }
 
-function changeAppName(userAppName) {
-  $("#idAppNameText").text(userAppName.value);
-  console.log(username + " changed App Name to '" + userAppName.value + "'");
-}
-
 function changeBorderColor(userBorderColor) {
   $(".screen").css("outline-color", userBorderColor.value);
   $(".borderColor").css("border-color", userBorderColor.value);
@@ -61,14 +56,6 @@ function changeBorderRadius(myRadius) {
   $(".screen").css("border-radius", myRadius.value + "px");
   $(".borderRadius").css("border-radius", myRadius.value + "px");
   $(".classBorderRadiusInput").val(myRadius.value);
-}
-
-function changeCanvasColor(myCanvasColor) {
-  console.log(
-    username + " changed Canvas Color to '" + myCanvasColor.value + "'"
-  );
-  $("#idBody").css("background-color", myCanvasColor.value);
-  $(".inputCanvasColor").val(myCanvasColor.value);
 }
 
 function changeColor1(myColor1) {
@@ -125,11 +112,6 @@ function changeFontSize(myFontSize) {
 function changeGap(myGap) {
   $(".gap").css("gap", myGap.value + "px");
   $(".inputGap").val(myGap.value);
-}
-
-function changeLanguage(myLanguage) {
-  document.documentElement.setAttribute("lang", myLanguage.value);
-  console.log(username + " changed Language to '" + myLanguage.value + "'");
 }
 
 function changeMargin(userMargin) {

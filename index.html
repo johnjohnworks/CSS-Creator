@@ -4,13 +4,14 @@
 <html class="classHTML" id="idHTML" lang="en">
 
 <head>
-  <title>&beta;etaX designer</title>
+  <title>&beta;etaX Designer</title>
   <meta charset="UTF-8" />
   <meta name="description" content="BetaX Designer" />
   <meta name="keywords" content="HTML, CSS, JavaScript" />
   <meta name="author" content="John John" />
   <meta name="copyright" content="Copyright Beta Experiment, LLC &copy; Mon Oct 10, 2022. All Rights reserved." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/x-icon" href="/href/icon.ico">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" />
   <link rel="stylesheet" href="href/1-reset.css" />
   <link rel="stylesheet" href="href/2-styles.css" />
@@ -19,7 +20,7 @@
   <link rel="stylesheet" href="href/5-utilityClasses.css" />
 </head>
 
-<body class="classLightMode classMargin borderRadius" id="idBody" title="BetaX OS.22">
+<body class="classLightMode classMargin" id="idBody" title="BetaX OS.22">
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
   <script src="scripts.js"></script>
   <header class="header" id="idHeader">
@@ -37,8 +38,6 @@
       <button class="classButton button0" id="idMenuButton" title="Menu">
         <i class="fa fa-angle-down borderColor"></i>
       </button>
-    </div>
-    <div class="header2 borderRadius">
       <button class="classButton button0 active" id="idCanvasButton" onclick="toggleCanvas(this)" title="Preview">
         <i class="fa fa-eye"></i>
         <span class="screenReaderOnly">Preview</span>
@@ -54,12 +53,6 @@
           </g>
         </svg>
       </label>
-      <input class="hideMobile color1 classSystemName" id="idSystemNameInputText1" onchange="changeSystemName(this)"
-        placeholder="System Name" size="7" title="System Name" type="text" value="&beta;etaOS" />
-
-      <button class="classButton button0">
-        <i class="fa fa-ellipsis-v"></i>
-      </button>
     </div>
     <div class="header3 borderRadius">
       <div class="classAvatar">
@@ -74,6 +67,25 @@
         <mark class="mark mark1" title="Feeling Happy">😀</mark>
         <mark class="mark mark2 success" title="Status On-line">&check;</mark>
       </div>
+      <label for="zoomSelect" title="Zoom" id="zoomLabel">
+        <select class="select0" id="zoomSelect" onchange="changeZoom(this)" title="Zoom">
+          <option value="400">400%</option>
+          <option value="300">300%</option>
+          <option value="200">200%</option>
+          <option value="100" selected>100%</option>
+          <option value="50">50%</option>
+        </select>
+        <small>Zoom</small>
+      </label>
+      <button class="button0" onclick="undoAction();" title="Undo">
+        <i class="fa fa-undo"></i><span class="screenReaderOnly"> Undo</span>
+      </button>
+      <button class="button0" onclick="redoAction();" title="Redo">
+        <i class="fa fa-redo"></i><span class="screenReaderOnly"> Redo</span>
+      </button>
+      <button class="button0" onclick="window.location.reload();" title="Reset">
+        <i class="fa fa-refresh"></i><span class="screenReaderOnly"> Reset</span>
+      </button>
       <button class="button0 active" title="Editor" onclick="toggleForm(this)">
         <i class="fa fa-cog"></i>
         <span class="screenReaderOnly">Editor</span>
@@ -87,12 +99,6 @@
       <button class="button0" title="Share" style="position: relative">
         <i class="fa fa-share-alt"></i>
         <span class="screenReaderOnly">Share</span>
-        <mark class="mark mark2 backgroundColor2" title="3 Notifications">
-          3
-        </mark>
-      </button>
-      <button class="button0" title="Close">
-        <i class="fa fa-close borderColor"></i><span class="screenReaderOnly">Close</span>
       </button>
     </div>
   </header>
@@ -104,9 +110,6 @@
             <div class="appLogo borderRadius">
               <input class="borderRadius" height="44" src="src/Beta-Experiment-Logo.svg" type="image" width="44" />
             </div>
-            &nbsp;
-            <strong class="color1" id="idAppNameText">Magnify</strong>
-            &nbsp;&nbsp;
           </div>
           <div class="header2">&nbsp;</div>
           <div class="header3">
@@ -133,11 +136,13 @@
           </div>
         </div>
         <div class="footer classFooter classScreenFooter" id="idScreenFooter">
-          <div class="footer1 borderRadius" id="idScreenFooter1"><textarea class="classTextarea"
-              title="Comment">Comment...</textarea>
+          <div class="footer1 borderRadius" id="idScreenFooter1"><textarea class="classTextarea" title="Comment"
+              rows="1">Comment...</textarea>
           </div>
           <div class="footer2"></div>
-          <div class="footer3 borderRadius">
+          <div class="footer3 borderRadius"><button title="Voice Input">
+              <i class="fa fa-video"></i>
+            </button>
             <button title="Voice Input">
               <i class="fa fa-microphone"></i>
             </button>
@@ -160,7 +165,7 @@
           <div class="classDetailsDiv">
             <details open title="Attributes">
               <summary class="summary" title="Toggle Attributes">
-                <i class="fa fa-list color1"></i>
+                <i class="fa fa-list"></i>
                 Attributes
               </summary>
               <fieldset>
@@ -177,7 +182,7 @@
                     <option value="desert">Desert</option>
                     <option value="forest">Forest</option>
                     <option value="jungle">Jungle</option>
-                    <option value="mountains" selected>Mountains (default)</option>
+                    <option value="mountains" selected>Mountains</option>
                     <option value="ocean">Ocean</option>
                     <option value="plains">Plains</option>
                     <option value="space">Space</option>
@@ -186,14 +191,9 @@
                   </select>
                 </div>
                 <div class="formGroup">
-                  <label for="idAppNameInput" title="App Name">Application Name</label>
-                  <input class="input inputText" id="idAppNameInput" onchange="changeAppName(this)"
-                    title="Input App Name" type="text" value="Magnify" />
-                </div>
-                <div class="formGroup">
                   <label for="selectMode" title="Mode">Mode</label>
                   <select class="select" id="modeSelect" onchange="changeMode(this)" title="Select Mode">
-                    <option value="light-mode" selected>Light (default)</option>
+                    <option value="light-mode" selected>Light</option>
                     <option value="dark-mode">Dark</option>
                   </select>
                 </div>
@@ -201,29 +201,10 @@
                   <label for="selectScreenSize" title="Screen Size">Screen Size</label>
                   <select class="select" id="selectScreenSize" onchange="changeScreenSize(this)"
                     title="Select Screen Size">
-                    <option value="mobile" selected>Mobile (default)</option>
+                    <option value="mobile" selected>Mobile</option>
                     <option value="tablet">Tablet</option>
                     <option value="desktop">Desktop</option>
                     <option value="custom">Custom</option>
-                  </select>
-                </div>
-                <div class="formGroup">
-                  <label for="selectLanguage" title="Language">Language</label>
-                  <select class="select" id="selectLanguage" onchange="changeLanguage(this)" title="Language">
-                    <option value="AR">عربى (Arabic)</option>
-                    <option value="BN">Bangla (Bengali)</option>
-                    <option value="EN" selected>English (default)</option>
-                    <option value="ES">Español (Spanish)</option>
-                    <option value="FR">Français (French)</option>
-                    <option value="HE">עִברִית (Hebrew)</option>
-                    <option value="HI">हिन्दी (Hindi)</option>
-                    <option value="JA">日本 Nihon (Japanese)</option>
-                    <option value="PA">ਪੰਜਾਬੀ (Punjabi)</option>
-                    <option value="PT">Português (Portugese)</option>
-                    <option value="RU">Русский (Russian)</option>
-                    <option value="UR">اردو (Urdu)</option>
-                    <option value="ZH">中文 Zhōngwén (Chinese)</option>
-                    <option value="EN" disabled>Braille</option>
                   </select>
                 </div>
               </fieldset>
@@ -302,9 +283,9 @@
                   <label for="idMarginInputRange" title="Margin">Margin</label>
                   <div class="inputGroup">
                     <input class="input inputMargin" id="idInputMarginRange" max="48" min="0"
-                      onchange="changeMargin(this)" step="1" title="Margin" type="range" value="0" />
+                      onchange="changeMargin(this)" step="1" title="Margin" type="range" value="32" />
                     <input class="input inputNumber inputMargin" id="idInputMarginNumber" max="48" min="0"
-                      onchange="changeMargin(this)" size="2" step="1" title="Margin" type="number" value="0" />
+                      onchange="changeMargin(this)" size="2" step="1" title="Margin" type="number" value="32" />
                   </div>
                 </div>
                 <div class="formGroup">
@@ -316,13 +297,13 @@
                       onchange="changePadding(this)" size="2" step="1" title="Padding" type="number" value="16" />
                   </div>
                 </div>
-                <div class="formGroup">
+                <div class="formGroup gap">
                   <label for="idGapInputRange" title="Gap">Gap</label>
                   <div class="inputGroup">
                     <input class="input inputGap" itemref="inGapInputRange" max="32" min="0" onchange="changeGap(this)"
-                      step="1" title="Gap" type="range" value="0" />
+                      step="1" title="Gap" type="range" value="6" />
                     <input class="input inputNumber inputGap" id="idGapInputNumber" max="32" min="0"
-                      onchange="changeGap(this)" title="Gap" type="number" value="0" />
+                      onchange="changeGap(this)" title="Gap" type="number" value="6" />
                   </div>
                 </div>
                 <div class="formGroup">
@@ -343,42 +324,6 @@
                 Colors
               </summary>
               <fieldset class="fieldset" id="myColors">
-                <div class="color-component">
-                  <div class="formGroup">
-                    <div class="inputGroup">
-                      <input onchange="changeBackground1(this)" title="Color" type="color" value="#ffffff" />
-                      <input class="input0" onchange="changeBackground1(this)" size="7" title="Background Color 1"
-                        type="text" value="#ffffff" />
-                    </div>
-                    <label title="Background 1 (Inputs)"><small>Background 1</small></label>
-                  </div>
-                </div>
-                <div class="formGroup">
-                  <div class="inputGroup">
-                    <input type="color" value="#f2f2f2" onchange="changeBackground2(this)" title="Color" class="" />
-                    <input class="input0" type="text" value="#f2f2f2" onchange="changeBackground2(this)"
-                      title="Background Color 2" size="7" />
-                  </div>
-                  <label title="Background 2 (Main)"><small>Background 2</small></label>
-                </div>
-                <div class="formGroup">
-                  <div class="inputGroup">
-                    <input type="color" onchange="changeBackground3(this)" class="inputColorBackground3" value="#e6e6e6"
-                      title="Background3 (Body, Canvas)" />
-                    <input class="input0" type="text" value="#e6e6e6" onchange="changeBackground3(this)"
-                      title="Background3 (Body, Canvas)" size="7" />
-                  </div>
-                  <label title="Background 3 (Body, Canvas)"><small>Background 3</small></label>
-                </div>
-                <div class="formGroup">
-                  <div class="inputGroup">
-                    <input type="color" value="#828282" onchange="changeBorderColor(this)" title="Color"
-                      class="inputBorderColor" />
-                    <input class="input0 inputBorderColor" onchange="changeBorderColor(this)" title="Border Color"
-                      type="text" size="7" value="#828282" />
-                  </div>
-                  <label class=""><small>Border Color</small></label>
-                </div>
                 <!-- What's your favorite color?-->
                 <div class="formGroup">
                   <div class="inputGroup">
@@ -423,6 +368,42 @@
                   </div>
                   <label for="inputColorFontColor3"><small>Font Color 3</small></label>
                 </div>
+                <div class="formGroup">
+                  <div class="inputGroup">
+                    <input type="color" value="#828282" onchange="changeUIColor(this)" title="Color"
+                      class="inputUIColor" />
+                    <input class="input0 inputUIColor" onchange="changeUIColor(this)" title="User-interface Color"
+                      type="text" size="7" value="#828282" />
+                  </div>
+                  <label class=""><small>UI Color</small></label>
+                </div>
+                <div class="color-component">
+                  <div class="formGroup">
+                    <div class="inputGroup">
+                      <input onchange="changeBackground1(this)" title="Color" type="color" value="#ffffff" />
+                      <input class="input0" onchange="changeBackground1(this)" size="7" title="Background Color 1"
+                        type="text" value="#ffffff" />
+                    </div>
+                    <label title="Background 1 (Inputs)"><small>Background 1</small></label>
+                  </div>
+                </div>
+                <div class="formGroup">
+                  <div class="inputGroup">
+                    <input type="color" value="#f2f2f2" onchange="changeBackground2(this)" title="Color" class="" />
+                    <input class="input0" type="text" value="#f2f2f2" onchange="changeBackground2(this)"
+                      title="Background Color 2" size="7" />
+                  </div>
+                  <label title="Background 2 (Main)"><small>Background 2</small></label>
+                </div>
+                <div class="formGroup">
+                  <div class="inputGroup">
+                    <input type="color" onchange="changeBackground3(this)" class="inputColorBackground3" value="#e6e6e6"
+                      title="Background3 (Body, Canvas)" />
+                    <input class="input0" type="text" value="#e6e6e6" onchange="changeBackground3(this)"
+                      title="Background3 (Body, Canvas)" size="7" />
+                  </div>
+                  <label title="Background 3 (Body, Canvas)"><small>Background 3</small></label>
+                </div>
               </fieldset>
             </details>
           </div>
@@ -430,54 +411,6 @@
       </form>
     </aside>
   </main>
-  <footer class="footer" id="idFooter">
-    <div class="footer1">
-      <a href="#legal-privacy-notice" class="linkButton colorFont1"
-        title="Legal & Privacy Notice Copyright &copy; Mon Oct 10, 2022. All Rights Reserved">
-        <i class="fa fa-lock fontColor1"></i>
-        <small class="screenReaderOnly">Legal</small>
-      </a>
-      <div class="formGroup">
-        <div class="inputGroup">
-          <input class="inputCanvasColor" id="inputColorCanvas" onchange="changeCanvasColor(this)" title="Color"
-            type="color" value="#e6e6e6" />
-          <input class="input0 inputCanvasColor" id="inputTextCanvasColor" onchange="changeCanvasColor(this)"
-            title="Canvas Color" type="text" size="7" value="#e6e6e6" />
-        </div>
-      </div>
-      <label for="zoomSelect" title="Zoom" id="zoomLabel">
-        <select class="select0" id="zoomSelect" onchange="changeZoom(this)" title="Zoom">
-          <option value="400">400%</option>
-          <option value="300">300%</option>
-          <option value="200">200%</option>
-          <option value="100" selected>100%</option>
-          <option value="50">50%</option>
-        </select>
-        <small>Zoom</small>
-      </label>
-    </div>
-    <div class="footer2">
-      <output id="idOutput" title="System Output">&hellip;</output>
-    </div>
-    <div class="footer3">
-      <button class="button0" onclick="undoAction();" title="Undo">
-        <i class="fa fa-undo"></i><span class="screenReaderOnly"> Undo</span>
-      </button>
-      <button class="button0" onclick="redoAction();" title="Redo">
-        <i class="fa fa-redo"></i><span class="screenReaderOnly"> Redo</span>
-      </button>
-      <button class="button0" onclick="window.location.reload();" title="Reset">
-        <i class="fa fa-refresh"></i><span class="screenReaderOnly"> Reset</span>
-      </button>
-      <button class="button1" title="Save" style="position:relative;">
-        <i class="fa fa-bullseye"></i>
-        <span>Save</span>
-        <mark class="mark mark2" title="online">
-          &check;
-        </mark>
-      </button>
-    </div>
-  </footer>
 </body>
 
 </html>
